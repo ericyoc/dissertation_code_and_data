@@ -1,0 +1,110 @@
+Defense Implemented: Randomization
+
+Randomization Approach: Combined Randomization
+
++----------+---------+---------------------+---------------------+
+| Metric   | Clean   | No Defense Attack   | w/ Defense Attack   |
++==========+=========+=====================+=====================+
+| Loss     | 0.67    | 38.5                | 5.68                |
++----------+---------+---------------------+---------------------+
+| Accuracy | 86%     | 0%                  | 35%                 |
++----------+---------+---------------------+---------------------+
+
+Example Misclassifications:
+
+---------------------------------------------------------
+Number of misclassified images for Clean: 25
+Attack: cw_pgd_attack
+Dataset: TrafficSigns
+Training Epochs: 20
+Trained Clean Images: 701
+Test Images: 176
+Accuracy: 0.86
+Precision: 0.86
+Recall: 1.00
+F1-score: 0.92
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+crosswalk -> speedlimit: 10
+speedlimit -> trafficlight: 2
+speedlimit -> stop: 1
+speedlimit -> crosswalk: 1
+stop -> speedlimit: 9
+trafficlight -> speedlimit: 1
+trafficlight -> crosswalk: 1
+
+---------------------------------------------------------
+Number of misclassified images for No Defense Attack: 176
+Attack: cw_pgd_attack
+Dataset: TrafficSigns
+Training Epochs: 20
+Model: Clean Model (No Defense)
+Test Images: 176
+Accuracy: 0.00
+Precision: 0.00
+Recall: 0.00
+F1-score: 0.00
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+crosswalk -> speedlimit: 13
+crosswalk -> trafficlight: 1
+speedlimit -> crosswalk: 112
+speedlimit -> trafficlight: 23
+speedlimit -> stop: 2
+stop -> speedlimit: 14
+stop -> trafficlight: 3
+trafficlight -> speedlimit: 2
+trafficlight -> crosswalk: 5
+trafficlight -> stop: 1
+
+---------------------------------------------------------
+Number of misclassified images for w/ Defense Attack: 115
+Attack: cw_pgd_attack
+Dataset: TrafficSigns
+Training Epochs: 20
+Model: Clean Model + Randomization Defense at Test Time
+Training Images Used: 701 (no retraining)
+Test Images: 176
+Accuracy: 0.35
+Precision: 0.35
+Recall: 1.00
+F1-score: 0.51
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+crosswalk -> speedlimit: 11
+crosswalk -> trafficlight: 2
+speedlimit -> crosswalk: 64
+speedlimit -> trafficlight: 18
+speedlimit -> stop: 1
+stop -> speedlimit: 11
+stop -> trafficlight: 1
+trafficlight -> speedlimit: 6
+trafficlight -> stop: 1
+
+====================================================================================================
+ROBUSTNESS METRICS
+====================================================================================================
+
+ATTACK EFFECTIVENESS:
+  Clean Accuracy: 85.80%
+  Attacked (No Defense): 0.00%
+  Accuracy Drop: 85.80 percentage points
+  Attack Success Rate: 100.00%
+
+DEFENSE EFFECTIVENESS:
+  Attacked (No Defense): 0.00%
+  With Defense: 34.66%
+  Accuracy Recovery: 34.66 percentage points
+  Recovery Rate: 40.40% of lost accuracy
+
+OVERALL ROBUSTNESS:
+  Absolute Improvement: 34.66 percentage points
+  Relative Improvement: Infinite (recovered from 0%)
+  Remaining Gap to Clean: 51.14 percentage points
+  Defense Robustness Score: 34.66%
