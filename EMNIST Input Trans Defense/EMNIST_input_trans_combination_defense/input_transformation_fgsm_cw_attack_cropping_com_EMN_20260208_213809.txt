@@ -1,0 +1,195 @@
+Defense Implemented: Input Transformation
+
+Input Transformation Approach: Combined Input Transformation
+
++----------+---------+---------------------+---------------------+
+| Metric   | Clean   | No Defense Attack   | w/ Defense Attack   |
++==========+=========+=====================+=====================+
+| Loss     | 0.29    | 7.28                | 5.81                |
++----------+---------+---------------------+---------------------+
+| Accuracy | 91%     | 0%                  | 10%                 |
++----------+---------+---------------------+---------------------+
+
+Example Misclassifications:
+
+---------------------------------------------------------
+Number of misclassified images for Clean: 46
+Attack: fgsm_cw_attack
+Dataset: EMNIST
+Training Epochs: 10
+Trained Clean Images: 2000
+Test Images: 500
+Accuracy: 0.91
+Precision: 0.91
+Recall: 1.00
+F1-score: 0.95
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+0 -> 8: 2
+0 -> 6: 4
+0 -> 2: 1
+0 -> 4: 1
+1 -> 4: 1
+2 -> 8: 3
+2 -> 6: 2
+2 -> 3: 1
+2 -> 7: 1
+3 -> 2: 2
+4 -> 9: 1
+4 -> 1: 1
+5 -> 6: 1
+5 -> 3: 3
+5 -> 0: 1
+5 -> 8: 1
+5 -> 4: 1
+6 -> 5: 3
+6 -> 8: 1
+7 -> 9: 3
+7 -> 1: 1
+8 -> 4: 2
+8 -> 3: 2
+8 -> 6: 1
+9 -> 7: 4
+9 -> 4: 1
+9 -> 8: 1
+
+---------------------------------------------------------
+Number of misclassified images for No Defense Attack: 498
+Attack: fgsm_cw_attack
+Dataset: EMNIST
+Training Epochs: 10
+Model: Clean Model (No Defense)
+Test Images: 500
+Accuracy: 0.00
+Precision: 0.00
+Recall: 1.00
+F1-score: 0.01
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+0 -> 5: 15
+0 -> 6: 17
+0 -> 3: 5
+0 -> 2: 8
+0 -> 8: 4
+0 -> 4: 1
+1 -> 2: 7
+1 -> 8: 24
+1 -> 3: 14
+1 -> 4: 1
+1 -> 9: 3
+1 -> 6: 1
+2 -> 3: 19
+2 -> 8: 9
+2 -> 0: 2
+2 -> 9: 4
+2 -> 4: 4
+2 -> 6: 8
+2 -> 5: 4
+3 -> 8: 20
+3 -> 5: 8
+3 -> 7: 4
+3 -> 2: 11
+3 -> 6: 5
+4 -> 9: 15
+4 -> 2: 10
+4 -> 8: 14
+4 -> 1: 2
+4 -> 7: 7
+4 -> 3: 1
+4 -> 5: 1
+5 -> 6: 2
+5 -> 3: 16
+5 -> 8: 24
+5 -> 7: 2
+5 -> 4: 3
+5 -> 2: 3
+6 -> 2: 24
+6 -> 8: 10
+6 -> 5: 10
+6 -> 3: 4
+6 -> 1: 2
+7 -> 8: 22
+7 -> 3: 24
+7 -> 1: 2
+7 -> 2: 2
+8 -> 4: 4
+8 -> 6: 7
+8 -> 2: 11
+8 -> 1: 2
+8 -> 3: 12
+8 -> 9: 5
+8 -> 5: 6
+8 -> 7: 3
+9 -> 2: 9
+9 -> 4: 15
+9 -> 3: 9
+9 -> 6: 7
+9 -> 8: 4
+9 -> 7: 5
+9 -> 5: 1
+
+---------------------------------------------------------
+Number of misclassified images for w/ Defense Attack: 451
+Attack: fgsm_cw_attack
+Dataset: EMNIST
+Training Epochs: 10
+Model: Retrained on Transformed Images
+Training Images Used: 2000
+Test Images: 500
+Accuracy: 0.10
+Precision: 0.10
+Recall: 1.00
+F1-score: 0.18
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+0 -> 8: 45
+0 -> 2: 4
+0 -> 3: 1
+1 -> 8: 49
+1 -> 3: 1
+2 -> 8: 50
+3 -> 8: 48
+4 -> 8: 46
+4 -> 3: 4
+5 -> 8: 49
+5 -> 2: 1
+6 -> 8: 44
+6 -> 2: 3
+6 -> 3: 1
+6 -> 5: 1
+7 -> 8: 46
+7 -> 3: 3
+7 -> 2: 1
+8 -> 3: 2
+8 -> 2: 2
+9 -> 8: 44
+9 -> 2: 2
+9 -> 3: 4
+
+====================================================================================================
+ROBUSTNESS METRICS
+====================================================================================================
+
+ATTACK EFFECTIVENESS:
+  Clean Accuracy: 90.80%
+  Attacked (No Defense): 0.40%
+  Accuracy Drop: 90.40 percentage points
+  Attack Success Rate: 99.56%
+
+DEFENSE EFFECTIVENESS:
+  Attacked (No Defense): 0.40%
+  With Defense: 9.80%
+  Accuracy Recovery: 9.40 percentage points
+  Recovery Rate: 10.40% of lost accuracy
+
+OVERALL ROBUSTNESS:
+  Absolute Improvement: 9.40 percentage points
+  Relative Improvement: 2350.00% increase over no defense
+  Remaining Gap to Clean: 81.00 percentage points
+  Defense Robustness Score: 9.80%
