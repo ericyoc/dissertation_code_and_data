@@ -2,7 +2,6 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 A comprehensive framework for evaluating adversarial robustness of Hybrid Neural Networks (HNN) combining classical Convolutional Neural Networks with quantum circuit layers. This implementation supports multiple datasets, compound adversarial attacks, and various defense mechanisms.
 
