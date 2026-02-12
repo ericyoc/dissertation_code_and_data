@@ -1,0 +1,131 @@
+Defense Implemented: Input Transformation
+
+Input Transformation Approach: Image Quilting
+
++----------+---------+---------------------+---------------------+
+| Metric   | Clean   | No Defense Attack   | w/ Defense Attack   |
++==========+=========+=====================+=====================+
+| Loss     | 0.604   | 3.73                | 6.19                |
++----------+---------+---------------------+---------------------+
+| Accuracy | 81%     | 14%                 | 25%                 |
++----------+---------+---------------------+---------------------+
+
+Example Misclassifications:
+
+---------------------------------------------------------
+Number of misclassified images for Clean: 48
+Attack: fgsm_pgd_attack
+Dataset: TinyImageNet
+Training Epochs: 120
+Trained Clean Images: 2500
+Test Images: 250
+Accuracy: 0.81
+Precision: 0.81
+Recall: 1.00
+F1-score: 0.89
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+computer keyboard -> remote control: 6
+computer keyboard -> stopwatch: 2
+lawn mower -> computer keyboard: 4
+lawn mower -> remote control: 5
+lawn mower -> water tower: 1
+remote control -> lawn mower: 3
+remote control -> computer keyboard: 8
+remote control -> stopwatch: 4
+stopwatch -> remote control: 8
+stopwatch -> lawn mower: 2
+stopwatch -> water tower: 1
+stopwatch -> computer keyboard: 1
+water tower -> computer keyboard: 1
+water tower -> lawn mower: 1
+water tower -> stopwatch: 1
+
+---------------------------------------------------------
+Number of misclassified images for No Defense Attack: 214
+Attack: fgsm_pgd_attack
+Dataset: TinyImageNet
+Training Epochs: 120
+Model: Clean Model (No Defense)
+Test Images: 250
+Accuracy: 0.14
+Precision: 0.14
+Recall: 1.00
+F1-score: 0.25
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+computer keyboard -> remote control: 26
+computer keyboard -> water tower: 3
+computer keyboard -> stopwatch: 6
+computer keyboard -> lawn mower: 5
+lawn mower -> computer keyboard: 19
+lawn mower -> remote control: 22
+lawn mower -> water tower: 3
+lawn mower -> stopwatch: 3
+remote control -> stopwatch: 7
+remote control -> water tower: 1
+remote control -> computer keyboard: 23
+remote control -> lawn mower: 5
+stopwatch -> remote control: 35
+stopwatch -> computer keyboard: 8
+stopwatch -> lawn mower: 4
+stopwatch -> water tower: 1
+water tower -> remote control: 30
+water tower -> computer keyboard: 8
+water tower -> lawn mower: 3
+water tower -> stopwatch: 2
+
+---------------------------------------------------------
+Number of misclassified images for w/ Defense Attack: 188
+Attack: fgsm_pgd_attack
+Dataset: TinyImageNet
+Training Epochs: 120
+Model: Retrained on Transformed Images
+Training Images Used: 2500
+Test Images: 250
+Accuracy: 0.25
+Precision: 0.25
+Recall: 1.00
+F1-score: 0.40
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+computer keyboard -> lawn mower: 40
+computer keyboard -> remote control: 3
+lawn mower -> remote control: 2
+lawn mower -> computer keyboard: 5
+remote control -> lawn mower: 31
+remote control -> computer keyboard: 7
+stopwatch -> remote control: 7
+stopwatch -> computer keyboard: 12
+stopwatch -> lawn mower: 31
+water tower -> lawn mower: 27
+water tower -> computer keyboard: 7
+water tower -> remote control: 16
+
+====================================================================================================
+ROBUSTNESS METRICS
+====================================================================================================
+
+ATTACK EFFECTIVENESS:
+  Clean Accuracy: 80.80%
+  Attacked (No Defense): 14.40%
+  Accuracy Drop: 66.40 percentage points
+  Attack Success Rate: 82.18%
+
+DEFENSE EFFECTIVENESS:
+  Attacked (No Defense): 14.40%
+  With Defense: 24.80%
+  Accuracy Recovery: 10.40 percentage points
+  Recovery Rate: 15.66% of lost accuracy
+
+OVERALL ROBUSTNESS:
+  Absolute Improvement: 10.40 percentage points
+  Relative Improvement: 72.22% increase over no defense
+  Remaining Gap to Clean: 56.00 percentage points
+  Defense Robustness Score: 24.80%
