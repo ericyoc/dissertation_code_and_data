@@ -1,0 +1,109 @@
+Defense Implemented: Input Transformation
+
+Input Transformation Approach: Image Quilting
+
++----------+---------+---------------------+---------------------+
+| Metric   | Clean   | No Defense Attack   | w/ Defense Attack   |
++==========+=========+=====================+=====================+
+| Loss     | 0.67    | 24.4                | 3.43                |
++----------+---------+---------------------+---------------------+
+| Accuracy | 86%     | 0%                  | 65%                 |
++----------+---------+---------------------+---------------------+
+
+Example Misclassifications:
+
+---------------------------------------------------------
+Number of misclassified images for Clean: 25
+Attack: fgsm_pgd_attack
+Dataset: TrafficSigns
+Training Epochs: 20
+Trained Clean Images: 701
+Test Images: 176
+Accuracy: 0.86
+Precision: 0.86
+Recall: 1.00
+F1-score: 0.92
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+crosswalk -> speedlimit: 10
+speedlimit -> trafficlight: 2
+speedlimit -> stop: 1
+speedlimit -> crosswalk: 1
+stop -> speedlimit: 9
+trafficlight -> speedlimit: 1
+trafficlight -> crosswalk: 1
+
+---------------------------------------------------------
+Number of misclassified images for No Defense Attack: 176
+Attack: fgsm_pgd_attack
+Dataset: TrafficSigns
+Training Epochs: 20
+Model: Clean Model (No Defense)
+Test Images: 176
+Accuracy: 0.00
+Precision: 0.00
+Recall: 0.00
+F1-score: 0.00
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+crosswalk -> speedlimit: 10
+crosswalk -> trafficlight: 4
+speedlimit -> trafficlight: 58
+speedlimit -> crosswalk: 78
+speedlimit -> stop: 1
+stop -> speedlimit: 12
+stop -> trafficlight: 5
+trafficlight -> speedlimit: 3
+trafficlight -> crosswalk: 4
+trafficlight -> stop: 1
+
+---------------------------------------------------------
+Number of misclassified images for w/ Defense Attack: 61
+Attack: fgsm_pgd_attack
+Dataset: TrafficSigns
+Training Epochs: 20
+Model: Retrained on Transformed Images
+Training Images Used: 701
+Test Images: 176
+Accuracy: 0.65
+Precision: 0.65
+Recall: 1.00
+F1-score: 0.79
+N/A (not enough class diversity)
+---------------------------------------------------------
+
+Misclassifications:
+crosswalk -> speedlimit: 9
+crosswalk -> trafficlight: 5
+speedlimit -> trafficlight: 26
+speedlimit -> stop: 2
+speedlimit -> crosswalk: 2
+stop -> speedlimit: 7
+stop -> trafficlight: 8
+trafficlight -> speedlimit: 2
+
+====================================================================================================
+ROBUSTNESS METRICS
+====================================================================================================
+
+ATTACK EFFECTIVENESS:
+  Clean Accuracy: 85.80%
+  Attacked (No Defense): 0.00%
+  Accuracy Drop: 85.80 percentage points
+  Attack Success Rate: 100.00%
+
+DEFENSE EFFECTIVENESS:
+  Attacked (No Defense): 0.00%
+  With Defense: 65.34%
+  Accuracy Recovery: 65.34 percentage points
+  Recovery Rate: 76.16% of lost accuracy
+
+OVERALL ROBUSTNESS:
+  Absolute Improvement: 65.34 percentage points
+  Relative Improvement: Infinite (recovered from 0%)
+  Remaining Gap to Clean: 20.45 percentage points
+  Defense Robustness Score: 65.34%
