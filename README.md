@@ -5,6 +5,9 @@
 
 A comprehensive framework for evaluating adversarial robustness of Hybrid Neural Networks (HNN) combining classical Convolutional Neural Networks with quantum circuit layers. This implementation supports multiple datasets, compound adversarial attacks, and various defense mechanisms.
 
+## Motivateing Article
+Yocam, E., Rizi, A., Kamepalli, M., Vaidyan, V., Wang, Y., Comert, G. (2026). Quantum Adversarial Machine Learning and Defense Strategies: Challenges and Opportunities. In: Usman, M. (eds) Quantum Robustness in Artificial Intelligence. Quantum Science and Technology. Springer, Cham. https://doi.org/10.1007/978-3-032-11153-1_4
+
 ## Table of Contents
 
 - [Overview](#overview)
